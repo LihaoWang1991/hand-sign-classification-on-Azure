@@ -7,7 +7,7 @@ Like Google Cloud in Google and AWS in Amazon, Azure is the cloud computing plat
 
 Like most machine learning platforms, the supported language on Azure Machine Learning service is Python. It fully supports open-source technologies. That means you can use open-source Python packages such as TensorFlow and scikit-learn. If you are familiar with coding using Jupyter Notebook, then Azure Machine Learning service can be a good choice to you because it has the same programming interface which is called [Azure Notebooks](https://notebooks.azure.com/). Nevertheless, you can also code on your local Python IDE but you need to install [Azure Python SDK](https://docs.microsoft.com/zh-cn/python/api/overview/azure/ml/intro?view=azure-ml-py) packages at first. 
 
-After learning the [official tutorials](https://docs.microsoft.com/en-us/azure/machine-learning/service/), I have migrated a previous project on Azure Machine Leraning service. I will show you this project step by step.
+After learning the [official tutorials](https://docs.microsoft.com/en-us/azure/machine-learning/service/), I have migrated a previous project on Azure Machine Learning service. I will show you this project step by step.
 
 ## Creating an Azure machine learning workspace
 
@@ -52,7 +52,7 @@ Before this step, we need to put a file called **config.json** in the current fo
 
 ![](https://i.postimg.cc/vTgfpB7Y/post-azure4.png)
 
-**Config.json** stores the necessary information that Azure notebbok needs to connect to the workspace that we have just created. In this project **config.json** contains only 3 lines.
+**Config.json** stores the necessary information that Azure notebook needs to connect to the workspace that we have just created. In this project **config.json** contains only 3 lines.
 
 ```
  "subscription_id": "65c2cf5a-b718-4bd4-9031-b7a2f2881ff0",
@@ -60,7 +60,7 @@ Before this step, we need to put a file called **config.json** in the current fo
  "workspace_name": "docs-ws"
 ```
 
-Then we can go back to Azure Notebook and create a workspace object from the existing workspace. Workspace.from_config() reads the file **config.json** and loads the details into an object named ws:
+Then we can go back to Azure Notebook and create a workspace object from the existing workspace. `Workspace.from_config()` reads the file **config.json** and loads the details into an object named ws:
 
 ```
 # load workspace configuration from the config.json file in the current folder.
@@ -118,11 +118,11 @@ else:
 We now have the necessary packages and compute resources to train a model in the cloud.
 
 ## Machine learning model and data preparation
-In his project we will implement a ConvNet using TensorFlow to classify the hand sign images into 6 classes: numer 0 to number 5. This was one of the programming assignments I have completed in Andrw Ng's course [Deep Learning](https://www.coursera.org/specializations/deep-learning).  
+In his project we will implement a ConvNet using TensorFlow to classify the hand sign images into 6 classes: number 0 to number 5. This was one of the programming assignments I have completed in Andrew Ng's course [Deep Learning](https://www.coursera.org/specializations/deep-learning).  
 
 <img src="https://i.postimg.cc/437QtzfP/SIGNS.png" style="width:800px;">
 
-[CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network), or ConvNet is a class of deep neural networks, most commonly applied to analyzing visual imagery. In this session we will do some preapration work such as loading and transforming data.
+[CNN](https://en.wikipedia.org/wiki/Convolutional_neural_network), or ConvNet is a class of deep neural networks, most commonly applied to analyzing visual imagery. In this session we will do some preparation work such as loading and transforming data.
 #### Data preparation
 The following code load and normalize the data. 
 
@@ -217,7 +217,7 @@ est = Estimator(source_directory=script_folder,
                 conda_packages=['tensorflow','matplotlib'])
 ```
 
-For detialed explanation please refer to my [Azure Notebook](https://handsignclassification-lihaowang.notebooks.azure.com/j/notebooks/Model/hand-sign-classification.ipynb#). 
+For detailed explanation please refer to my [Azure Notebook](https://handsignclassification-lihaowang.notebooks.azure.com/j/notebooks/Model/hand-sign-classification.ipynb#). 
 
 #### Submit the job to the cluster
 The following code will run the experiment by submitting the estimator object:
@@ -257,4 +257,4 @@ model = run.register_model(model_name='hand-sign-classification', model_path='ou
 And now if we go to the **Model** column of the Azure machine learning workspace, we will see the registered model:
 <img src="https://i.postimg.cc/x1jqsr7p/post-azure9.png" style="width:800px;">
 
-So finally we have successfully trained a hand signs classification model on Azure machine learning workspace! You can find all the codes and data used in this project in my [Azure Notebook](https://notebooks.azure.com/lihaowang/projects/handsignclassification). In my next blog I will introduce how to deploy the model as a web service in Azure.
+So finally we have successfully trained a hand signs classification model on Azure machine learning workspace! You can find all the codes and data used in this project in my [Azure Notebook](https://notebooks.azure.com/lihaowang/projects/handsignclassification). 
